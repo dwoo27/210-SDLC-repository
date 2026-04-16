@@ -1,7 +1,40 @@
-
-
 #include <iostream>
+//include fstream, map, array, list, string
+using namespace std;
+
+//const for num of sims
+
+//funciton prototypes:
+//fin orders data
+//output shop
+//simulate shop
 
 int main()
 {
+
 }
+
+//function definitions:
+
+//fin orders data
+	//open file of order data
+	//output error if file fails
+	// 
+	// each line will contain orderName and stationName
+	// 
+	// read each order and place in waiting list
+	// 
+	// close file
+
+//output shop
+	//loop through each station in map
+	
+	//print orders waiting
+
+	//print orders in progress
+
+	//print orders completed
+
+
+//simulate shop
+	//
