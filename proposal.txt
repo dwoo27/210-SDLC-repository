@@ -1,0 +1,9 @@
+Project Proposal: Boba Shop Simulation
+
+My project is a simulation of a boba shop. The program will model how drink orders move through the shop over time as workers prepare and complete them. This simulation will show how the shop changes during a sequence of time periods and how different drink stations handle their orders.
+
+The program will use an std::map as the main data structure. Each key in the map will be the name of a drink station in the shop, such as MilkTea, Matcha, FruitTea, and BrownSugar. The value for each key will be a 3-element std::array of std::lists. These three lists will represent the three stages of drink orders at that station: waiting orders, orders in progress, and completed orders.
+
+The simulation will run for at least 25 time periods. During each time period, drinks may move from the waiting list to the in-progress list, and from the in-progress list to the completed list. 
+
+The purpose of the simulation is to show how orders flow through the boba shop and how the number of waiting, in-progress, and completed drinks changes over time at each station. 
