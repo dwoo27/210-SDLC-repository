@@ -137,10 +137,35 @@ void simShop(map<string, array<list<string>, 3>> shop, vector<pair<string, strin
 			//check it exists and add order to waiting list
 			if (it != shop.end()) {
 				it->second[0].push_back(orderName);
+				cout << orderName << " arrived at " << stationName << endl;
 			}
 
 			//remove order from pool so it is not reused
 			orderPool.erase(orderPool.begin() + index);
+		}
+
+		//loop through each station
+		for (auto& pair : shop) {
+			string stationName = pair.first;
+
+			//rand num of waiting drinks are started
+			int started = rand() & 3;
+			for (int i = 0; i < started && !pair.second[0].empty(); i++) { //loop through and check waiting list is not empty
+				string drink = pair.second[0].front(); //first drink in waiting list
+				pair.second[0].pop_front(); //drink taken from waiting list and put into in progress
+				pair.second[1].push_back(drink);
+				cout << drink << " started at " << stationName << endl;
+				
+			}
+
+			//rand num of in progress drinks completed
+			int finished = rand() % 3;
+			for (int i = 0; i < finished && !pair.second[1].empty(); i++) { //loop through and check in progress not empty
+				string drink = pair.second[1].front(); //first drink in in progress
+				pair.second[1].pop_front(); //drink taken from in progress and put in finished 
+				pair.second[2].push_back(drink);
+				cout << drink << " finished at " << stationName << endl;
+			}
 		}
 
 
