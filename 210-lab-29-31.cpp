@@ -131,7 +131,16 @@ void simShop(map<string, array<list<string>, 3>> shop, vector<pair<string, strin
 			string orderName = orderPool[index].first;
 			string stationName = orderPool[index].second;
 
+			//find station
+			auto it = shop.find(stationName);
 
+			//check it exists and add order to waiting list
+			if (it != shop.end()) {
+				it->second[0].push_back(orderName);
+			}
+
+			//remove order from pool so it is not reused
+			orderPool.erase(orderPool.begin() + index);
 		}
 
 
