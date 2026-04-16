@@ -46,16 +46,30 @@ int main()
 //function definitions:
 
 //fin orders data
-void loadOrders(vector<string>&, vector<string>&) {
+void loadOrders(vector<string>& orderNames, vector<string>& stationNames) {
 
 	//open file of order data
 	//output error if file fails
+	ifstream fin("orders.txt");
+
+	if (!fin.good()) {
+		cout << "File not found.";
+		return;
+	}
+
 
 	// each line will contain orderName and stationName
+	string orderName;
+	string stationName;
 
 	// read each order and place in waiting list
+	while (fin >> orderName >> stationName) {
+		orderNames.push_back(orderName);
+		stationNames.push_back(stationName);
+	}
 
 	// close file
+	fin.close();
 
 }
 
