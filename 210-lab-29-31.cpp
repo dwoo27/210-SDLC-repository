@@ -7,6 +7,7 @@
 #include <string>
 #include <ctime>
 #include <cstdlib>
+
 //include fstream, map, array, list, string
 using namespace std;
 
@@ -74,15 +75,20 @@ void loadOrders(vector<string>& orderNames, vector<string>& stationNames) {
 }
 
 //output shop
-void displayShop(map<string, array<list<string>, 3>>){
+void displayShop(map<string, array<list<string>, 3>> shop){
 
 	//loop through each station in map
-	
-	//print orders waiting
+	for (const auto& pair : shop) {
+		cout << "Station: " << pair.first << endl;
+		//print orders waiting
+		cout << "   Waiting: ";
+		for (const auto& drink : pair.second[0]) {
+			cout << drink << " ";
+		}
+		//print orders in progress
 
-	//print orders in progress
-
-	//print orders completed
+		//print orders completed
+	}
 }
 
 //simulate shop
