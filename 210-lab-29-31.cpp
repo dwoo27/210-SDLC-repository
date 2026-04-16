@@ -41,6 +41,21 @@ int main()
 		
 		//print current time period
 
+		//randomly decide how many new orders will arive for this period
+
+		//randomly pull some orders from name/type vectors
+		//each order goes into waiting list of its station
+
+
+
+
+
+
+
+
+
+
+
 		//check if drink is in progress
 			//move one drink to completed
 			//ouptut action
