@@ -21,33 +21,46 @@ const int PERIODS = 25;
 
 void loadOrders(vector<string>&, vector<string>&);
 void displayShop(map<string, array<list<string>, 3>>);
-void simShop(array<list<string>, 3>&, vector<string>&, vector<string>&, int);
+void simShop(map<string, array<list<string>, 3>>, vector<pair<string, string>>&, int);
 
 int main()
 {
 	//seed rand generater
+	srand(time(0));
 
 	//declare boba shop map
 	//key = station, value = array of 3 lists
+	map<string, array<list<string>, 3>> shop;
 
 	//declare pair vectrs for upcoming order pool
 	//orderNames and stationNames
+	vector<pair<string, string>> orderPool;
 
 	//create stations in map
+	shop["Milk Tea"];
+	shop["Matcha"];
+	shop["Fruit Tea"];
+	shop["Brown Sugar"];
 
 	//load all orders from txt file into vectors
+	loadOrders(orderPool);
 
 	//display beg state of shop
+	cout << "Shop now open" << endl;
+	displayShop(shop);
 
 	//run sim
+	simShop(shop, orderPool, PERIODS);
 
 	//display final state of shop
+	cout << "Shop closed" << endl;
+	displayShop(shop);
 }
 
 //function definitions:
 
 //fin orders data
-void loadOrders(vector<string>& orderNames, vector<string>& stationNames) {
+void loadOrders(vector<pair<string, string>>& orderPool) {
 
 	//open file of order data
 	//output error if file fails
@@ -65,8 +78,7 @@ void loadOrders(vector<string>& orderNames, vector<string>& stationNames) {
 
 	// read each order and place in waiting list
 	while (fin >> orderName >> stationName) {
-		orderNames.push_back(orderName);
-		stationNames.push_back(stationName);
+		orderPool.push_back({ orderName, stationName });
 	}
 
 	// close file
@@ -168,38 +180,6 @@ void simShop(map<string, array<list<string>, 3>> shop, vector<pair<string, strin
 			}
 		}
 
-
-		//print current time period
-
-		//randomly decide how many new orders will arive for this period
-
-		//randomly pull some orders from name/type vectors
-		//each order goes into waiting list of its station
-
-			//stop if orders is empty
-
-			//choose one random order left in order pool
-
-			//get chosen order and its matching station
-
-			//place order into waiting ist for that station
-
-			//dislay where order went
-
-			//erase order from both vectors so not resused
-
-
-		//loop through each station
-			//move some wiaint drinks to in progress
-			//move some in progress drinks to completed
-
-				//random num of drinks to start perdiod
-
-				//move drinks from waiting to in progress
-
-				//rand num drinks that finish period
-
-				//move drinks from in progress to completed
 	}
 
 }
