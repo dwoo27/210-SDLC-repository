@@ -21,7 +21,7 @@ const int PERIODS = 25;
 
 void loadOrders(vector<string>&, vector<string>&);
 void displayShop(map<string, array<list<string>, 3>>);
-void simShop(map<string, array<list<string>, 3>>);
+void simShop(array<list<string>, 3>&, vector<string>&, vector<string>&, int);
 
 int main()
 {
@@ -104,10 +104,35 @@ void displayShop(map<string, array<list<string>, 3>> shop){
 }
 
 //simulate shop
-void simShop(map<string, array<list<string>, 3>> shop) {
+void simShop(map<string, array<list<string>, 3>> shop, vector<pair<string, string>>& orderPool, int periods) {
 
 	//loop for 25 time periods
-	for (int i = 1; i <= PERIODS; i++) {
+	for (int i = 1; i <= periods; i++) {
+
+		//random amount of new orders for this period
+		int newOrders = rand() % 6;
+
+		//make sure new orders !> orders left in pool
+		if (newOrders > (int)orderPool.size()) {
+			newOrders = orderPool.size();
+		}
+
+		//random amount of orders from pool moved to correct station
+		for (int i = 0; i < newOrders; i++) {
+			//check for empty pool
+			if (orderPool.empty()) {
+				break;
+			}
+
+			//choose rand index
+			int index = rand() % orderPool.size();
+
+			//get rand pair
+			string orderName = orderPool[index].first;
+			string stationName = orderPool[index].second;
+
+
+		}
 
 
 		//print current time period
