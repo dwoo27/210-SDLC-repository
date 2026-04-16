@@ -1,13 +1,26 @@
 #include <iostream>
+#include <fstream>
+#include <map>
+#include <array>
+#include <list>
+#include <vector>
+#include <string>
+#include <ctime>
+#include <cstdlib>
 //include fstream, map, array, list, string
 using namespace std;
 
 //const for num of sims
+const int PERIODS = 25;
 
 //funciton prototypes:
 //fin orders data
 //output shop
 //simulate shop
+
+void loadOrders(vector<string>&, vector<string>&);
+void displayShop(map<string, array<list<string>, 3>>);
+void simShop(array<list<string>, 3>&, vector<string>&, vector<string>&, int);
 
 int main()
 {
@@ -33,16 +46,22 @@ int main()
 //function definitions:
 
 //fin orders data
+void loadOrders(vector<string>&, vector<string>&) {
+
 	//open file of order data
 	//output error if file fails
-	 
+
 	// each line will contain orderName and stationName
-	 
+
 	// read each order and place in waiting list
-	
+
 	// close file
 
+}
+
 //output shop
+void displayShop(map<string, array<list<string>, 3>>){
+
 	//loop through each station in map
 	
 	//print orders waiting
@@ -50,11 +69,13 @@ int main()
 	//print orders in progress
 
 	//print orders completed
-
+}
 
 //simulate shop
+void simShop(array<list<string>, 3>&, vector<string>&, vector<string>&, int) {
+
 	//loop for 25 time periods
-		
+
 		//print current time period
 
 		//randomly decide how many new orders will arive for this period
@@ -82,11 +103,12 @@ int main()
 				//random num of drinks to start perdiod
 
 				//move drinks from waiting to in progress
-				
+
 				//rand num drinks that finish period
 
 				//move drinks from in progress to completed
-		
+
+}
 
 
 
@@ -95,12 +117,4 @@ int main()
 
 
 
-
-		//check if drink is in progress
-			//move one drink to completed
-			//ouptut action
-
-		//check if there is waiting order
-			//move one drink to in progress
-			//output action
-
+	
