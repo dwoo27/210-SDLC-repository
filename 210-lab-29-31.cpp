@@ -21,7 +21,7 @@ const int PERIODS = 25;
 
 void loadOrders(vector<string>&, vector<string>&);
 void displayShop(map<string, array<list<string>, 3>>);
-void simShop(array<list<string>, 3>&, vector<string>&, vector<string>&, int);
+void simShop(map<string, array<list<string>, 3>>);
 
 int main()
 {
@@ -85,16 +85,30 @@ void displayShop(map<string, array<list<string>, 3>> shop){
 		for (const auto& drink : pair.second[0]) {
 			cout << drink << " ";
 		}
+		cout << endl;
 		//print orders in progress
+		cout << "   In Progress: ";
+		for (const auto& drink : pair.second[1]) {
+			cout << drink << " ";
+		}
+		cout << endl;
 
 		//print orders completed
+		cout << "   Completed: ";
+		for (const auto& drink : pair.second[2]) {
+			cout << drink << " ";
+		}
+		cout << endl;
+
 	}
 }
 
 //simulate shop
-void simShop(array<list<string>, 3>&, vector<string>&, vector<string>&, int) {
+void simShop(map<string, array<list<string>, 3>> shop) {
 
 	//loop for 25 time periods
+	for (int i = 1; i <= PERIODS; i++) {
+
 
 		//print current time period
 
@@ -127,6 +141,7 @@ void simShop(array<list<string>, 3>&, vector<string>&, vector<string>&, int) {
 				//rand num drinks that finish period
 
 				//move drinks from in progress to completed
+	}
 
 }
 
