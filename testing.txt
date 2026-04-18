@@ -1,0 +1,6 @@
+
+To test loadOrders, I would test whether the function correctly opens the file and places them into the orderPool vector. 
+
+To test displayShop, I would create a small shop map with one station and one order in each of the three lists. The function will be called to check that an output exists and is correctly organized by each station.
+
+To test simShop, I would build a small test map and orderPool and run the function for one or two periods. I will test to ensure drinks move along the list chain correctly and that orders are being erased after they enter the lists so they are not reused.
