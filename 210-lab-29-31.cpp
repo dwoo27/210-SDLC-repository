@@ -110,7 +110,7 @@ void displayShop(map<string, array<list<string>, 3>> shop){
 		for (const auto& drink : pair.second[2]) {
 			cout << drink << " ";
 		}
-		cout << endl;
+		cout << endl << endl;
 
 	}
 }
@@ -125,6 +125,8 @@ void simShop(map<string, array<list<string>, 3>>& shop, vector<pair<string, stri
 		cout << "Time Period: " << i << endl;
 		//random amount of new orders for this period
 		int newOrders = rand() % 6;
+
+		map<string, list<string>> tempArrivals;
 
 		//make sure new orders !> orders left in pool
 		if (newOrders > (int)orderPool.size()) {
@@ -152,7 +154,7 @@ void simShop(map<string, array<list<string>, 3>>& shop, vector<pair<string, stri
 			//check it exists and add order to waiting list
 			if (it != shop.end()) {
 				it->second[0].push_back(orderName);
-				cout << " arrived:  " << orderName << endl;
+				tempArrivals[stationName].push_back(orderName);
 			}
 
 			//remove order from pool so it is not reused
@@ -164,7 +166,13 @@ void simShop(map<string, array<list<string>, 3>>& shop, vector<pair<string, stri
 			string stationName = pair.first;
 
 			//print station header
-			cout << stationName << ": " << endl;
+			cout << endl << stationName << ": " << endl;
+
+			if (!tempArrivals[stationName].empty()) {
+				for (auto& drink : tempArrivals[stationName]) {
+					cout << " arrived: " << drink << endl;
+				}
+			}
 
 			//rand num of waiting drinks are started
 			int started = rand() % 3;
@@ -172,7 +180,7 @@ void simShop(map<string, array<list<string>, 3>>& shop, vector<pair<string, stri
 				string drink = pair.second[0].front(); //first drink in waiting list
 				pair.second[0].pop_front(); //drink taken from waiting list and put into in progress
 				pair.second[1].push_back(drink);
-				cout << " started:  " << drink << endl;
+				cout << " started: " << drink << endl;
 				
 			}
 
@@ -182,10 +190,10 @@ void simShop(map<string, array<list<string>, 3>>& shop, vector<pair<string, stri
 				string drink = pair.second[1].front(); //first drink in in progress
 				pair.second[1].pop_front(); //drink taken from in progress and put in finished 
 				pair.second[2].push_back(drink);
-				cout << " finished:  " << drink << endl;
+				cout << " finished: " << drink << endl;
 			}
 		}
-
+		cout << endl;
 	}
 
 }
