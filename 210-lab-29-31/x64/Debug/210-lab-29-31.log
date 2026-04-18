@@ -1,4 +1,1 @@
-﻿  210-lab-29-31.cpp
-C:\Users\dylan\source\repos\210-lab-29-31\210-lab-29-31.cpp(29,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\dylan\source\repos\210-lab-29-31\210-lab-29-31.cpp(131,30): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  210-lab-29-31.vcxproj -> C:\Users\dylan\source\repos\210-lab-29-31\x64\Debug\210-lab-29-31.exe
+﻿  210-lab-29-31.vcxproj -> C:\Users\dylan\source\repos\210-lab-29-31\x64\Debug\210-lab-29-31.exe
