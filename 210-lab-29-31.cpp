@@ -121,6 +121,8 @@ void simShop(map<string, array<list<string>, 3>>& shop, vector<pair<string, stri
 	//loop for 25 time periods
 	for (int i = 1; i <= periods; i++) {
 
+		//print period header
+		cout << "Time Period: " << i << endl;
 		//random amount of new orders for this period
 		int newOrders = rand() % 6;
 
@@ -145,6 +147,7 @@ void simShop(map<string, array<list<string>, 3>>& shop, vector<pair<string, stri
 
 			//find station
 			auto it = shop.find(stationName);
+
 
 			//check it exists and add order to waiting list
 			if (it != shop.end()) {

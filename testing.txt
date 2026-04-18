@@ -4,3 +4,28 @@ To test loadOrders, I would test whether the function correctly opens the file a
 To test displayShop, I would create a small shop map with one station and one order in each of the three lists. The function will be called to check that an output exists and is correctly organized by each station.
 
 To test simShop, I would build a small test map and orderPool and run the function for one or two periods. I will test to ensure drinks move along the list chain correctly and that orders are being erased after they enter the lists so they are not reused.
+
+
+Driver Program: 
+
+#include <iostream>
+#include <map>
+#include <array>
+#include <list>
+#include <string>
+using namespace std;
+
+void displayShop(map<string, array<list<string>, 3>> shop);
+
+int main() {
+    map<string, array<list<string>, 3>> shop;
+
+    shop["Milk Tea"];
+
+    shop["Milk Tea"][0].push_back("Order1");
+    shop["Milk Tea"][1].push_back("Order2");
+    shop["Milk Tea"][2].push_back("Order3");
+
+    displayShop(shop);
+
+}
