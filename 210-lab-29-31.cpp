@@ -19,9 +19,9 @@ const int PERIODS = 25;
 //output shop
 //simulate shop
 
-void loadOrders(vector<string>&, vector<string>&);
+void loadOrders(vector<pair<string, string>>& );
 void displayShop(map<string, array<list<string>, 3>>);
-void simShop(map<string, array<list<string>, 3>>, vector<pair<string, string>>&, int);
+void simShop(map<string, array<list<string>, 3>> &, vector<pair<string, string>>&, int);
 
 int main()
 {
@@ -37,10 +37,10 @@ int main()
 	vector<pair<string, string>> orderPool;
 
 	//create stations in map
-	shop["Milk Tea"];
+	shop["MilkTea"];
 	shop["Matcha"];
-	shop["Fruit Tea"];
-	shop["Brown Sugar"];
+	shop["FruitTea"];
+	shop["BrownSugar"];
 
 	//load all orders from txt file into vectors
 	loadOrders(orderPool);
@@ -64,10 +64,10 @@ void loadOrders(vector<pair<string, string>>& orderPool) {
 
 	//open file of order data
 	//output error if file fails
-	ifstream fin("orders.txt");
+	ifstream fin("drinks.txt");
 
 	if (!fin.good()) {
-		cout << "File not found.";
+		cout << "File not found." << endl;
 		return;
 	}
 
@@ -110,19 +110,23 @@ void displayShop(map<string, array<list<string>, 3>> shop){
 		for (const auto& drink : pair.second[2]) {
 			cout << drink << " ";
 		}
-		cout << endl;
+		cout << endl << endl;
 
 	}
 }
 
 //simulate shop
-void simShop(map<string, array<list<string>, 3>> shop, vector<pair<string, string>>& orderPool, int periods) {
+void simShop(map<string, array<list<string>, 3>>& shop, vector<pair<string, string>>& orderPool, int periods) {
 
 	//loop for 25 time periods
 	for (int i = 1; i <= periods; i++) {
 
+		//print period header
+		cout << "Time Period: " << i << endl;
 		//random amount of new orders for this period
 		int newOrders = rand() % 6;
+
+		map<string, list<string>> tempArrivals;
 
 		//make sure new orders !> orders left in pool
 		if (newOrders > (int)orderPool.size()) {
@@ -146,10 +150,11 @@ void simShop(map<string, array<list<string>, 3>> shop, vector<pair<string, strin
 			//find station
 			auto it = shop.find(stationName);
 
+
 			//check it exists and add order to waiting list
 			if (it != shop.end()) {
 				it->second[0].push_back(orderName);
-				cout << orderName << " arrived at " << stationName << endl;
+				tempArrivals[stationName].push_back(orderName);
 			}
 
 			//remove order from pool so it is not reused
@@ -160,13 +165,22 @@ void simShop(map<string, array<list<string>, 3>> shop, vector<pair<string, strin
 		for (auto& pair : shop) {
 			string stationName = pair.first;
 
+			//print station header
+			cout << endl << stationName << ": " << endl;
+
+			if (!tempArrivals[stationName].empty()) {
+				for (auto& drink : tempArrivals[stationName]) {
+					cout << " arrived: " << drink << endl;
+				}
+			}
+
 			//rand num of waiting drinks are started
-			int started = rand() & 3;
+			int started = rand() % 3;
 			for (int i = 0; i < started && !pair.second[0].empty(); i++) { //loop through and check waiting list is not empty
 				string drink = pair.second[0].front(); //first drink in waiting list
 				pair.second[0].pop_front(); //drink taken from waiting list and put into in progress
 				pair.second[1].push_back(drink);
-				cout << drink << " started at " << stationName << endl;
+				cout << " started: " << drink << endl;
 				
 			}
 
@@ -176,10 +190,10 @@ void simShop(map<string, array<list<string>, 3>> shop, vector<pair<string, strin
 				string drink = pair.second[1].front(); //first drink in in progress
 				pair.second[1].pop_front(); //drink taken from in progress and put in finished 
 				pair.second[2].push_back(drink);
-				cout << drink << " finished at " << stationName << endl;
+				cout << " finished: " << drink << endl;
 			}
 		}
-
+		cout << endl;
 	}
 
 }
