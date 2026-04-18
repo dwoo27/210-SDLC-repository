@@ -37,10 +37,10 @@ int main()
 	vector<pair<string, string>> orderPool;
 
 	//create stations in map
-	shop["Milk Tea"];
+	shop["MilkTea"];
 	shop["Matcha"];
-	shop["Fruit Tea"];
-	shop["Brown Sugar"];
+	shop["FruitTea"];
+	shop["BrownSugar"];
 
 	//load all orders from txt file into vectors
 	loadOrders(orderPool);
@@ -64,7 +64,7 @@ void loadOrders(vector<pair<string, string>>& orderPool) {
 
 	//open file of order data
 	//output error if file fails
-	ifstream fin("orders.txt");
+	ifstream fin("drinks.txt");
 
 	if (!fin.good()) {
 		cout << "File not found." << endl;
