@@ -19,9 +19,9 @@ const int PERIODS = 25;
 //output shop
 //simulate shop
 
-void loadOrders(vector<string>&, vector<string>&);
+void loadOrders(vector<pair<string, string>>& );
 void displayShop(map<string, array<list<string>, 3>>);
-void simShop(map<string, array<list<string>, 3>>, vector<pair<string, string>>&, int);
+void simShop(map<string, array<list<string>, 3>> &, vector<pair<string, string>>&, int);
 
 int main()
 {
@@ -67,7 +67,7 @@ void loadOrders(vector<pair<string, string>>& orderPool) {
 	ifstream fin("orders.txt");
 
 	if (!fin.good()) {
-		cout << "File not found.";
+		cout << "File not found." << endl;
 		return;
 	}
 
@@ -116,7 +116,7 @@ void displayShop(map<string, array<list<string>, 3>> shop){
 }
 
 //simulate shop
-void simShop(map<string, array<list<string>, 3>> shop, vector<pair<string, string>>& orderPool, int periods) {
+void simShop(map<string, array<list<string>, 3>>& shop, vector<pair<string, string>>& orderPool, int periods) {
 
 	//loop for 25 time periods
 	for (int i = 1; i <= periods; i++) {
@@ -161,7 +161,7 @@ void simShop(map<string, array<list<string>, 3>> shop, vector<pair<string, strin
 			string stationName = pair.first;
 
 			//rand num of waiting drinks are started
-			int started = rand() & 3;
+			int started = rand() % 3;
 			for (int i = 0; i < started && !pair.second[0].empty(); i++) { //loop through and check waiting list is not empty
 				string drink = pair.second[0].front(); //first drink in waiting list
 				pair.second[0].pop_front(); //drink taken from waiting list and put into in progress
